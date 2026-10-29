@@ -105,8 +105,8 @@ The RAG service implements multiple layers of protection:
 
 ### Default Admin Login
 
-- **Email:** admin@gmail.com
-- **Password:** admin123
+- **Email:** **********@gmail.com
+- **Password:** ***********
 
 **Change this password immediately in production!**
 
