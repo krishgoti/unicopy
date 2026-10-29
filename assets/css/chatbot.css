@@ -1,0 +1,175 @@
+/* --- RAG Floating Chatbot Styles --- */
+
+/* Widget Container */
+.rag-chatbot-widget {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    pointer-events: none; /* Let clicks pass through the container voids */
+}
+
+.rag-chatbot-widget > * {
+    pointer-events: auto; /* Re-enable clicks for the actual widget parts */
+}
+
+/* Toggle Button */
+.rag-toggle-btn {
+    width: 65px;
+    height: 65px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+}
+.rag-toggle-btn:hover {
+    transform: scale(1.05);
+}
+.pulse-animation {
+    animation: pulse 2s infinite;
+}
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(var(--primary-rgb), 0.7); }
+    70% { box-shadow: 0 0 0 15px rgba(var(--primary-rgb), 0); }
+    100% { box-shadow: 0 0 0 0 rgba(var(--primary-rgb), 0); }
+}
+
+/* Chat Window Frame */
+.rag-chat-window {
+    width: 380px;
+    height: 550px;
+    max-height: 80vh;
+    margin-bottom: 20px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transform-origin: bottom right;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    opacity: 1;
+    transform: scale(1) translateY(0);
+}
+
+/* Glassmorphism Effect */
+.glassmorphic-window {
+    background: rgba(255, 255, 255, 0.6); /* Light translucent background */
+    backdrop-filter: blur(12px); /* The actual glass blur */
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(var(--primary-rgb), 0.3);
+    box-shadow: 0 8px 32px 0 rgba(var(--dark-rgb), 0.15);
+}
+
+[data-theme="dark"] .glassmorphic-window {
+    background: rgba(var(--secondary-rgb), 0.7); /* Dark translucent background */
+    border: 1px solid rgba(var(--primary-rgb), 0.1);
+}
+
+.rag-chat-window.d-none {
+    /* override bootstrap d-none for animations */
+    display: flex !important;
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.9) translateY(20px);
+}
+
+/* Glass Header */
+.glass-header {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    z-index: 3;
+}
+
+/* Chat Body area */
+.rag-chat-body {
+    flex-grow: 1;
+    overflow-y: auto;
+    background-color: transparent !important; /* Let glassmorphism show */
+    display: flex;
+    flex-direction: column;
+}
+.rag-chat-body::-webkit-scrollbar {
+    width: 6px;
+}
+.rag-chat-body::-webkit-scrollbar-thumb {
+    background-color: rgba(0,0,0,0.2);
+    border-radius: 10px;
+}
+
+/* Messages */
+.rag-message {
+    max-width: 85%;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    word-wrap: break-word;
+    margin-bottom: 12px;
+}
+.rag-message.user {
+    align-self: flex-end;
+}
+.rag-message.user .msg-content {
+    background-color: var(--primary);
+    color: var(--dark) !important;
+    border-radius: 18px 18px 0px 18px;
+    box-shadow: 0 2px 5px rgba(var(--primary-rgb), 0.3);
+}
+.rag-message.bot {
+    align-self: flex-start;
+}
+.rag-message.bot .msg-content {
+    background-color: var(--bg-surface);
+    color: var(--text-main) !important;
+    border: 1px solid rgba(0,0,0,0.05);
+    border-radius: 18px 18px 18px 0px;
+}
+[data-theme="dark"] .rag-message.bot .msg-content {
+    background-color: #2b3035;
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+/* Typing / Progress Indicator */
+.typing-indicator {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 8px 12px;
+}
+.typing-dot {
+    width: 6px;
+    height: 6px;
+    background-color: var(--primary);
+    border-radius: 50%;
+    animation: typing 1.4s infinite ease-in-out both;
+}
+.typing-dot:nth-child(1) { animation-delay: -0.32s; }
+.typing-dot:nth-child(2) { animation-delay: -0.16s; }
+@keyframes typing {
+    0%, 80%, 100% { transform: scale(0); }
+    40% { transform: scale(1); }
+}
+.progress-text {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-style: italic;
+    margin-left: 5px;
+}
+
+/* FAQ Container */
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+.hide-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+
+/* Responsive tweaks */
+@media (max-width: 500px) {
+    .rag-chat-window {
+        width: calc(100vw - 40px);
+        height: 60vh;
+        margin-right: -5px; /* Adjust against container right */
+    }
+}

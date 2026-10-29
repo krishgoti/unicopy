@@ -1,0 +1,36 @@
+# RAG Backend - GIT Ignore
+# -----------------------
+
+# Secrets
+.env
+test_tokens.txt
+
+# Python Environment
+venv/
+env/
+ENV/
+.env.local
+.venv/
+
+# Python Cache
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+
+# Data & Models
+bm25_values.json
+*.pkl
+*.db
+!database/unihelp.sql
+
+# Logs
+*.log
+logs/
+
+# IDAs / OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db

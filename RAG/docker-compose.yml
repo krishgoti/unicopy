@@ -1,0 +1,19 @@
+version: "3.9"
+
+services:
+  rag-backend:
+    build: .
+    image: rag-backend
+    container_name: rag-app
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    restart: unless-stopped
+    volumes:
+      # Persist HuggingFace model cache — prevents NeMo Guardrails from
+      # re-downloading model files on every container restart (~18s cold start)
+      - hf_cache:/root/.cache/huggingface
+
+volumes:
+  hf_cache:

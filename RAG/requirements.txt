@@ -1,0 +1,67 @@
+# FastAPI server
+fastapi
+uvicorn[standard]
+python-multipart
+
+# Environment variables
+python-dotenv
+
+# LangChain core
+langchain
+langchain-core
+langchain-community
+
+# Agents & tools
+# langchain-groq
+langchain-mistralai
+langchain-google-genai
+
+# Vector database
+pinecone[grpc]
+langchain-pinecone
+pinecone-text                 # BM25Encoder for hybrid search
+# protobuf
+# grpcio
+# grpcio-tools
+# googleapis-common-protos
+# grpcio-status
+
+# Document loading
+pypdf
+
+# Text splitting
+langchain-text-splitters
+
+# Agent framework (LangGraph runtime)
+langgraph
+
+# Guardrails
+nemoguardrails
+
+# Rate Limiting
+slowapi
+
+# Authentication (Guardrail #3)
+PyJWT
+
+# Tokenization (needed internally by text splitters)
+tiktoken
+
+# Other 
+pydantic
+# typing
+# hashlib
+# json 
+# os
+# tempfile
+
+# Embeddings
+# sentence-transformers         # REMOVED — hybrid retriever now uses OpenRouter embeddings
+# langchain-huggingface         # REMOVED — no longer needed
+# (OpenRouter embeddings used for both dense retrieval paths)
+
+# Optional but recommended (reranker stability)
+numpy
+
+# MySQL (document registry)
+pymysql

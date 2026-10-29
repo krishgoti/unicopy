@@ -1,0 +1,24 @@
+# UniHelp - Apache Configuration
+# REST-style routing and security
+
+Options -Indexes
+RewriteEngine On
+RewriteBase /unicopy/
+
+# Block access to sensitive files
+<FilesMatch "^\.">
+    Require all denied
+</FilesMatch>
+
+# Protect config and core (allow uploads for resume access)
+RewriteRule ^config/ - [F,L]
+RewriteRule ^core/ - [F,L]
+RewriteRule ^app/ - [F,L]
+
+# Allow direct access to existing files and directories
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Route all other requests to index.php
+# Using [B] flag to properly encode backreferences and avoid AH10411
+RewriteRule ^(.*)$ index.php?url=$1 [B,QSA,L]

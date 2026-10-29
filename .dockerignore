@@ -1,0 +1,39 @@
+# UniHelp PHP — Docker build context exclusions
+# Prevents unnecessary/sensitive files from being sent to Docker daemon
+
+# Docker files themselves
+docker-compose.yml
+Dockerfile.php
+.dockerignore
+
+# RAG service (has its own build context)
+RAG/
+
+# Dev environment
+.cursor/
+.qoder/
+.idea/
+.vscode/
+
+# Git
+.git/
+.gitignore
+
+# Secrets — never bake into image
+.env
+.env.example
+
+# Logs & OS
+*.log
+.DS_Store
+Thumbs.db
+
+# Large/generated
+public/uploads/resumes/*
+public/uploads/interviews/*
+tmp/
+
+# Docs
+*.md
+PLAN.md
+RAG_ADMIN_PLAN.md

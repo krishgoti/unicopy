@@ -1,0 +1,84 @@
+# UniHelp — Master Docker Compose
+# ─────────────────────────────────────────────────────────────────
+# Commands:
+#   Normal start:    docker compose up
+#   Fresh build:     docker compose up --build
+#   Stop:            docker compose down
+#   Full reset:      docker compose down -v   (wipes DB data)
+# ─────────────────────────────────────────────────────────────────
+
+services:
+
+  # ── 1. MySQL Database ──────────────────────────────────────────
+  mysql:
+    image: mysql:8.0
+    container_name: unicopy-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD:-}"   # read from .env — never hardcode
+      MYSQL_ALLOW_EMPTY_PASSWORD: "${MYSQL_ALLOW_EMPTY_PASSWORD:-yes}"
+      MYSQL_DATABASE: "${DB_NAME:-unihelp}"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      # Auto-imports schema on first run only (skipped if mysql_data volume already exists)
+      - ./database/unihelp_master.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    networks:
+      - unicopy-net
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+  # ── 2. PHP + Apache (replaces XAMPP) ──────────────────────────
+  php-apache:
+    build:
+      context: .
+      dockerfile: Dockerfile.php
+    container_name: unicopy-web
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    env_file:
+      - .env
+    volumes:
+      # Live-mount source — code changes reflect immediately (no rebuild needed)
+      - .:/var/www/html/unicopy
+      # Bind-mount uploads — points to real folder on your PC, existing files work immediately
+      - ./public/uploads:/var/www/html/unicopy/public/uploads
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - unicopy-net
+
+  # ── 3. RAG Chatbot Backend ─────────────────────────────────────
+  rag-backend:
+    build:
+      context: ./RAG
+      dockerfile: Dockerfile
+    container_name: unicopy-rag
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    env_file:
+      - ./RAG/.env
+    volumes:
+      # Persist HuggingFace model cache — prevents re-downloading on every restart
+      - hf_cache:/root/.cache/huggingface
+      # Persist RAG logs on host — rag.log + rag_eval.jsonl visible at ./RAG/logs/
+      - ./RAG/logs:/app/logs
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - unicopy-net
+
+volumes:
+  mysql_data:    # MySQL data — persists across restarts
+  hf_cache:      # HuggingFace model cache
+
+networks:
+  unicopy-net:
+    driver: bridge

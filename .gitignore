@@ -1,0 +1,44 @@
+
+# UniHelp PHP Project - Git Ignore
+
+# Secrets and environment configuration
+.env
+.env.*
+!.env.example
+credentials.txt
+
+# IDE and editor settings
+.cursor/
+.qoder/
+.idea/
+.vscode/
+
+# User uploads and personal data
+/uploads/
+/public/uploads/
+
+# Temporary scripts
+/add_otp_columns.php
+/describe_tables.php
+/test_mail_real.php
+
+# Temporary files and logs
+tmp/
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Python generated files
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Local database and backup files
+*.sqlite
+*.sqlite3
+*.db
+*.bak
+*.sql.gz

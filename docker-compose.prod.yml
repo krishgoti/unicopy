@@ -1,0 +1,80 @@
+# UniHelp — Production Docker Compose (for friend / deployment)
+# ─────────────────────────────────────────────────────────────────
+# Prerequisites:
+#   1. docker login  (need access to rajtejani38/unihelp private repo)
+#   2. Place .env in project root
+#   3. Place RAG/.env in RAG/ folder
+#   4. Place database/unihelp_master.sql in database/ folder
+#
+# Commands:
+#   Start:      docker compose -f docker-compose.prod.yml up
+#   Background: docker compose -f docker-compose.prod.yml up -d
+#   Stop:       docker compose -f docker-compose.prod.yml down
+#   Full reset: docker compose -f docker-compose.prod.yml down -v
+# ─────────────────────────────────────────────────────────────────
+
+services:
+
+  # ── 1. MySQL Database ──────────────────────────────────────────
+  mysql:
+    image: mysql:8.0
+    container_name: unicopy-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD:-}"
+      MYSQL_ALLOW_EMPTY_PASSWORD: "${MYSQL_ALLOW_EMPTY_PASSWORD:-yes}"
+      MYSQL_DATABASE: "${DB_NAME:-unihelp}"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./database/unihelp_master.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    networks:
+      - unicopy-net
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+  # ── 2. PHP + Apache ────────────────────────────────────────────
+  php-apache:
+    image: rajtejani38/unihelp:php-apache   # pulled from Docker Hub
+    container_name: unicopy-web
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    env_file:
+      - .env
+    volumes:
+      - .:/var/www/html/unicopy
+      - ./public/uploads:/var/www/html/unicopy/public/uploads
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - unicopy-net
+
+  # ── 3. RAG Chatbot Backend ─────────────────────────────────────
+  rag-backend:
+    image: rajtejani38/unihelp:rag-backend  # pulled from Docker Hub
+    container_name: unicopy-rag
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    env_file:
+      - ./RAG/.env
+    volumes:
+      - hf_cache:/root/.cache/huggingface
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - unicopy-net
+
+volumes:
+  mysql_data:
+  hf_cache:
+
+networks:
+  unicopy-net:
+    driver: bridge
