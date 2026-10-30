@@ -103,12 +103,9 @@ The RAG service implements multiple layers of protection:
 - **Safety:** Built-in prompt injection protection and input sanitization.
 - **Rate Limiting:** IP-based rate limiting to prevent automated abuse.
 
-### Default Admin Login (Local Development)
+### Admin Setup
 
-- **Email:** `admin@unihelp.edu`
-- **Password:** `Admin@123`
-
-> ⚠️ **Security Warning:** Change default credentials immediately upon deploying to any public or production environment!
+Administrator accounts can be created by registering an account and assigning the `'admin'` role in the database, or by running `database/seed_admin.sql`. Ensure you set a secure password upon initial setup.
 
 ## Project Structure
 

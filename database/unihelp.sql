@@ -406,7 +406,7 @@ CREATE TABLE `user_skill_points` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
--- Insert default admin user (email: admin@unihelp.edu, password: Admin@123)
+-- Insert default admin user
 -- --------------------------------------------------------
 INSERT INTO `users` (`email`, `password`, `role`, `status`) VALUES
 ('admin@unihelp.edu', '$2y$10$F0QF/p.hp8WZXsvskNlhbeYcdPbhoNX8oHpVF0MQ5iI1n.XJHjbxO', 'admin', 'active');

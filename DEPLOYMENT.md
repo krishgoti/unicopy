@@ -538,18 +538,17 @@ FLUSH PRIVILEGES;
 EXIT;
 ```
 
-### 5.4: Change Default Admin Password
+### 5.4: Update Administrator Password
 
-The default admin login (`admin@unihelp.edu` / `Admin@123`) must be changed:
+Ensure your administrator password is set to a strong, unique secret for production:
 
 1. Open `https://yourdomain.com/unicopy/login`
-2. Login with default credentials
-3. Go to profile/settings and change the password
-4. Or update directly in the database:
+2. Login and navigate to profile/settings to update your password
+3. Or update directly in the database with a fresh bcrypt hash:
 
 ```bash
 docker exec -it unicopy-mysql mysql -u root -p unihelp \
-  -e "UPDATE users SET password = '\$2y\$10\$YOUR_BCRYPT_HASH' WHERE email = 'admin@unihelp.edu';"
+  -e "UPDATE users SET password = '\$2y\$10\$YOUR_BCRYPT_HASH' WHERE role = 'admin';"
 ```
 
 ### 5.5: SSH Hardening

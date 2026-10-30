@@ -1,7 +1,4 @@
--- Seed default admin user
--- Email: admin@unihelp.edu
--- Password: Admin@123
-
+-- Seed default admin user (Update password hash as needed)
 INSERT INTO `users` (`email`, `password`, `role`, `status`) 
 VALUES ('admin@unihelp.edu', '$2y$10$QeEW.220iYZqPppndXVthuySiwWNkz57Av.JeEjt/uN4xojduXFi2', 'admin', 'active');
 
