@@ -6,6 +6,12 @@
 .env.*
 !.env.example
 credentials.txt
+*.pem
+*.key
+*.cert
+*.crt
+*.pfx
+*.p12
 
 # IDE and editor settings
 .cursor/
@@ -18,6 +24,7 @@ credentials.txt
 /public/uploads/
 
 # Temporary scripts
+test_*.php
 /add_otp_columns.php
 /describe_tables.php
 /test_mail_real.php

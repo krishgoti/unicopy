@@ -103,12 +103,12 @@ The RAG service implements multiple layers of protection:
 - **Safety:** Built-in prompt injection protection and input sanitization.
 - **Rate Limiting:** IP-based rate limiting to prevent automated abuse.
 
-### Default Admin Login
+### Default Admin Login (Local Development)
 
-- **Email:** **********@gmail.com
-- **Password:** ***********
+- **Email:** `admin@unihelp.edu`
+- **Password:** `Admin@123`
 
-**Change this password immediately in production!**
+> ⚠️ **Security Warning:** Change default credentials immediately upon deploying to any public or production environment!
 
 ## Project Structure
 

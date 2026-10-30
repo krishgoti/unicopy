@@ -1,4 +1,4 @@
-﻿-- MariaDB dump 10.19  Distrib 10.4.32-MariaDB, for Win64 (AMD64)
+-- MariaDB dump 10.19  Distrib 10.4.32-MariaDB, for Win64 (AMD64)
 --
 -- Host: localhost    Database: unihelp
 -- ------------------------------------------------------
@@ -718,7 +718,7 @@ CREATE TABLE `resume_reviews` (
 
 LOCK TABLES `resume_reviews` WRITE;
 /*!40000 ALTER TABLE `resume_reviews` DISABLE KEYS */;
-INSERT INTO `resume_reviews` VALUES (4,8,'resume-sample.pdf','resume_8_1775034448.pdf','pdf','ai','completed',0,'{\"overall_score\":0,\"ats_score\":0,\"experience_level\":\"fresher\",\"summary_feedback\":\"The provided text appears to be a PDF\'s internal structure rather than actual resume content. No summary or other sections could be extracted for review.\",\"skills_found\":[],\"missing_keywords\":[\"Python\",\"Java\",\"Data Structures\",\"Algorithms\",\"Machine Learning\",\"Cloud Computing\",\"Web Development\"],\"strengths\":[\"No discernible strengths as the content is unreadable.\"],\"weaknesses\":[\"The resume content is unreadable, appearing as PDF metadata and internal structure.\",\"No actual resume sections (education, experience, skills, projects) could be identified or parsed.\"],\"suggestions\":[\"Please provide the actual text content of your resume for a proper review.\",\"Ensure the resume is in a text-readable format (e.g., plain text, DOCX, or a properly extracted PDF text).\"],\"sections_found\":[],\"missing_sections\":[\"summary\",\"education\",\"skills\",\"projects\",\"experience\",\"certifications\",\"achievements\",\"extracurriculars\"],\"grammar_issues\":[\"Cannot assess grammar as no human-readable text was provided.\"],\"formatting_notes\":[\"The input is not a human-readable resume document, but rather PDF internal code.\",\"Cannot assess formatting without actual resume content.\"]}',NULL,NULL,NULL,'2026-04-01 09:07:55','2026-04-01 09:07:28');
+INSERT INTO `resume_reviews` VALUES (4,8,'resume-sample.pdf','resume_sample.pdf','pdf','ai','completed',0,'{\"overall_score\":0,\"ats_score\":0,\"experience_level\":\"fresher\",\"summary_feedback\":\"The provided text appears to be a PDF\'s internal structure rather than actual resume content. No summary or other sections could be extracted for review.\",\"skills_found\":[],\"missing_keywords\":[\"Python\",\"Java\",\"Data Structures\",\"Algorithms\",\"Machine Learning\",\"Cloud Computing\",\"Web Development\"],\"strengths\":[\"No discernible strengths as the content is unreadable.\"],\"weaknesses\":[\"The resume content is unreadable, appearing as PDF metadata and internal structure.\",\"No actual resume sections (education, experience, skills, projects) could be identified or parsed.\"],\"suggestions\":[\"Please provide the actual text content of your resume for a proper review.\",\"Ensure the resume is in a text-readable format (e.g., plain text, DOCX, or a properly extracted PDF text).\"],\"sections_found\":[],\"missing_sections\":[\"summary\",\"education\",\"skills\",\"projects\",\"experience\",\"certifications\",\"achievements\",\"extracurriculars\"],\"grammar_issues\":[\"Cannot assess grammar as no human-readable text was provided.\"],\"formatting_notes\":[\"The input is not a human-readable resume document, but rather PDF internal code.\",\"Cannot assess formatting without actual resume content.\"]}',NULL,NULL,NULL,'2026-04-01 09:07:55','2026-04-01 09:07:28');
 /*!40000 ALTER TABLE `resume_reviews` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -814,7 +814,7 @@ CREATE TABLE `student_profiles` (
 
 LOCK TABLES `student_profiles` WRITE;
 /*!40000 ALTER TABLE `student_profiles` DISABLE KEYS */;
-INSERT INTO `student_profiles` VALUES (2,5,'software',8.00,NULL,NULL,NULL,NULL,'2026-03-28 04:28:26','2026-03-28 04:44:06',80.00,90.00,'Graduate',7),(5,8,NULL,NULL,'resume_8_1775034448.pdf',NULL,NULL,NULL,'2026-03-31 06:01:55','2026-04-01 09:07:28',NULL,NULL,NULL,NULL);
+INSERT INTO `student_profiles` VALUES (2,5,'software',8.00,NULL,NULL,NULL,NULL,'2026-03-28 04:28:26','2026-03-28 04:44:06',80.00,90.00,'Graduate',7),(5,8,NULL,NULL,'resume_sample.pdf',NULL,NULL,NULL,'2026-03-31 06:01:55','2026-04-01 09:07:28',NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `student_profiles` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -914,7 +914,7 @@ CREATE TABLE `user_profiles` (
 
 LOCK TABLES `user_profiles` WRITE;
 /*!40000 ALTER TABLE `user_profiles` DISABLE KEYS */;
-INSERT INTO `user_profiles` VALUES (5,1,'System Administrator',NULL,'Administration',NULL,NULL,NULL,NULL,NULL,'2026-03-28 04:17:59','2026-03-28 04:17:59'),(6,5,'Student','1234567890','MSC (AI/ML)',NULL,NULL,NULL,'I am student',NULL,'2026-03-28 04:28:26','2026-03-28 04:44:06'),(9,8,'Raj',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2026-03-31 06:01:55','2026-03-31 06:01:55'),(10,9,'Shashi',NULL,'BSC (AI/ML)',NULL,NULL,NULL,NULL,NULL,'2026-04-01 12:20:08','2026-04-01 12:20:08'),(11,10,'Faculty Tester',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2026-04-01 12:30:52','2026-04-01 12:30:52'),(12,11,'Faculty User',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2026-04-01 12:33:59','2026-04-01 12:33:59');
+INSERT INTO `user_profiles` VALUES (5,1,'System Administrator',NULL,'Administration',NULL,NULL,NULL,NULL,NULL,'2026-03-28 04:17:59','2026-03-28 04:17:59'),(6,5,'Student User','1234567890','MSC (AI/ML)',NULL,NULL,NULL,'I am student',NULL,'2026-03-28 04:28:26','2026-03-28 04:44:06'),(9,8,'Student Demo',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2026-03-31 06:01:55','2026-03-31 06:01:55'),(10,9,'Faculty Member',NULL,'BSC (AI/ML)',NULL,NULL,NULL,NULL,NULL,'2026-04-01 12:20:08','2026-04-01 12:20:08'),(11,10,'Faculty Tester',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2026-04-01 12:30:52','2026-04-01 12:30:52'),(12,11,'Faculty User',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2026-04-01 12:33:59','2026-04-01 12:33:59');
 /*!40000 ALTER TABLE `user_profiles` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1014,7 +1014,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'admin@gmail.com','$2y$10$PAk/rQNnJmiakQOa8LqhTO5FozPLPhD1.0TEjjuFS8AGHAZREYqA6','admin','active','2026-03-28 04:18:00','2026-03-28 04:33:51',NULL,NULL,NULL,NULL),(5,'student@gmail.com','$2y$10$HLtMfZp3kcs1QDsx3kx.AeeHdizPeIuG.ye.4mkueECFLH5Nvj9h2','student','active','2026-03-28 04:28:26','2026-03-28 04:33:51',NULL,NULL,NULL,NULL),(8,'rjtejani00@gmail.com','$2y$10$8OrYokDhlvy6qHKYrDEaJ.Nzbw078FYChIF28a.2A9AlqVisxz12i','student','active','2026-03-31 06:01:55','2026-03-31 07:31:53',NULL,NULL,'2026-03-31 07:31:53',NULL),(9,'shashi@gmail.com','$2y$10$D.CMrpesZTI9wCyyV.o1N.up1jZYvOC7JQrVktqx6A1odNpzaCxWe','faculty','active','2026-04-01 12:20:08','2026-04-01 12:20:08',NULL,NULL,NULL,'4b1fe06d7f3fd4beb0b7f84123edcaed202ccd0bacb0a27000342763bfd92129'),(10,'faculty_test_unique@example.com','$2y$10$WW3joEKI9aTaRrGquIhHM.bh9PQPaCCcI5SCQid5GMhTzpT/zVrrW','faculty','active','2026-04-01 12:30:52','2026-04-01 12:30:52',NULL,NULL,NULL,'a5b12e7b284674f759ff33f1ba37358cb7eab9524fe0627684064fc8f0bf86cf'),(11,'faculty@gmail.com','$2y$10$Jz3m9zAK6JEaU1S9.WqH1OLs1pGfAC5gtFbNlWlS0UziOxlQozGBW','faculty','active','2026-04-01 12:33:59','2026-04-01 12:33:59',NULL,NULL,NULL,'d2bfdcdf77986f371069ffe44f996560a2fec526c64b47eafaf02e7fca3d5f0f');
+INSERT INTO `users` VALUES (1,'admin@unihelp.edu','$2y$10$QeEW.220iYZqPppndXVthuySiwWNkz57Av.JeEjt/uN4xojduXFi2','admin','active','2026-03-28 04:18:00','2026-03-28 04:33:51',NULL,NULL,NULL,NULL),(5,'student@example.com','$2y$10$8UzS/U9rGnCJqM.TvGZ9LObuDN5BAHm5cI6mHERklhyYU9sIvW8pG','student','active','2026-03-28 04:28:26','2026-03-28 04:33:51',NULL,NULL,NULL,NULL),(8,'student2@example.com','$2y$10$8UzS/U9rGnCJqM.TvGZ9LObuDN5BAHm5cI6mHERklhyYU9sIvW8pG','student','active','2026-03-31 06:01:55','2026-03-31 07:31:53',NULL,NULL,NULL,NULL),(9,'faculty@example.com','$2y$10$8UzS/U9rGnCJqM.TvGZ9LObuDN5BAHm5cI6mHERklhyYU9sIvW8pG','faculty','active','2026-04-01 12:20:08','2026-04-01 12:20:08',NULL,NULL,NULL,NULL),(10,'faculty_test@example.com','$2y$10$8UzS/U9rGnCJqM.TvGZ9LObuDN5BAHm5cI6mHERklhyYU9sIvW8pG','faculty','active','2026-04-01 12:30:52','2026-04-01 12:30:52',NULL,NULL,NULL,NULL),(11,'faculty2@example.com','$2y$10$8UzS/U9rGnCJqM.TvGZ9LObuDN5BAHm5cI6mHERklhyYU9sIvW8pG','faculty','active','2026-04-01 12:33:59','2026-04-01 12:33:59',NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

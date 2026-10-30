@@ -31,7 +31,7 @@
                         </div>
                         <div class="col-md-6">
                             <label class="form-label small fw-bold">Support Email</label>
-                            <input type="email" name="support_email" class="form-control rounded-pill px-4 py-2" value="krishgoti19@gmail.com" readonly>
+                            <input type="email" name="support_email" class="form-control rounded-pill px-4 py-2" value="<?= htmlspecialchars(defined('SMTP_FROM_EMAIL') && SMTP_FROM_EMAIL ? SMTP_FROM_EMAIL : (defined('SMTP_USER') && SMTP_USER ? SMTP_USER : 'support@example.com')) ?>" readonly>
                         </div>
                     </div>
                 </div>
@@ -45,15 +45,15 @@
                     <div class="row g-3">
                         <div class="col-md-8">
                             <label class="form-label small fw-bold">SMTP Host</label>
-                            <input type="text" class="form-control rounded-pill px-4 py-2" value="smtp.gmail.com" readonly>
+                            <input type="text" class="form-control rounded-pill px-4 py-2" value="<?= htmlspecialchars(defined('SMTP_HOST') && SMTP_HOST ? SMTP_HOST : 'smtp.gmail.com') ?>" readonly>
                         </div>
                         <div class="col-md-4">
                             <label class="form-label small fw-bold">Port</label>
-                            <input type="text" class="form-control rounded-pill px-4 py-2" value="587" readonly>
+                            <input type="text" class="form-control rounded-pill px-4 py-2" value="<?= htmlspecialchars(defined('SMTP_PORT') && SMTP_PORT ? SMTP_PORT : '587') ?>" readonly>
                         </div>
                         <div class="col-md-6">
                             <label class="form-label small fw-bold">Authenticated User</label>
-                            <input type="text" class="form-control rounded-pill px-4 py-2" value="krishgoti19@gmail.com" readonly>
+                            <input type="text" class="form-control rounded-pill px-4 py-2" value="<?= htmlspecialchars(defined('SMTP_USER') && SMTP_USER ? SMTP_USER : 'user@example.com') ?>" readonly>
                         </div>
                         <div class="col-md-6">
                             <label class="form-label small fw-bold">SMTP Password</label>

@@ -5,15 +5,19 @@ Options -Indexes
 RewriteEngine On
 RewriteBase /unicopy/
 
-# Block access to sensitive files
-<FilesMatch "^\.">
+# Block access to sensitive files and hidden dotfiles
+<FilesMatch "(^\.|\.(sql|log|ini|sh|bak|yml|yaml)$)">
     Require all denied
 </FilesMatch>
 
-# Protect config and core (allow uploads for resume access)
+# Protect sensitive application directories
 RewriteRule ^config/ - [F,L]
 RewriteRule ^core/ - [F,L]
 RewriteRule ^app/ - [F,L]
+RewriteRule ^database/ - [F,L]
+RewriteRule ^RAG/ - [F,L]
+RewriteRule ^docker/ - [F,L]
+RewriteRule ^libs/ - [F,L]
 
 # Allow direct access to existing files and directories
 RewriteCond %{REQUEST_FILENAME} !-f

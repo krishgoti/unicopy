@@ -28,7 +28,7 @@ class InterviewController extends Controller {
 
     private function handleMissingSchema(PDOException $e): void {
         if (($e->getCode() ?? '') === '42S22' || ($e->getCode() ?? '') === '42S02') {
-            $this->flash('error', 'Interview Experiences schema is outdated/missing. Run: c:\\xampp\\php\\php.exe c:\\xampp\\htdocs\\unicopy\\migrate_interview_experiences_v2.php');
+            $this->flash('error', 'Interview Experiences schema is outdated or missing. Please run database migrations or import database/unihelp.sql.');
             $this->redirect(BASE_URL . '/interview-experiences');
             return;
         }

@@ -88,7 +88,7 @@ class Mailer {
         } catch (Exception $e) {
             self::$lastError = !empty($mail->ErrorInfo) ? $mail->ErrorInfo : $e->getMessage();
             error_log("PHPMailer OTP Exception: " . $e->getMessage() . " | ErrorInfo: " . $mail->ErrorInfo);
-            if (session_status() === PHP_SESSION_ACTIVE) {
+            if (session_status() === PHP_SESSION_ACTIVE && strtolower((string)Env::get('APP_ENV')) !== 'production') {
                 $_SESSION['dev_otp'] = $otp;
             }
             return false;

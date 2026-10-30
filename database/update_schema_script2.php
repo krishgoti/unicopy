@@ -1,5 +1,5 @@
-﻿<?php
-$file = "c:/xampp/htdocs/unicopy/database/unihelp_master.sql";
+<?php
+$file = __DIR__ . '/unihelp_master.sql';
 $sql = file_get_contents($file);
 if (strpos($sql, "duration_mins") !== false) {
     echo "Already contains duration_mins.\n";

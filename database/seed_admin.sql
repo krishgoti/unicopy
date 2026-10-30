@@ -1,9 +1,9 @@
 -- Seed default admin user
--- Email: admin@gmail.com
--- Password: admin123
+-- Email: admin@unihelp.edu
+-- Password: Admin@123
 
 INSERT INTO `users` (`email`, `password`, `role`, `status`) 
-VALUES ('admin@gmail.com', '$2y$10$dilS0VmI9GPpQMOX85JBZOSM2pjI3DVgmeOO0lR4C9erCtuyCMOsm', 'admin', 'active');
+VALUES ('admin@unihelp.edu', '$2y$10$QeEW.220iYZqPppndXVthuySiwWNkz57Av.JeEjt/uN4xojduXFi2', 'admin', 'active');
 
 SET @admin_id = LAST_INSERT_ID();
 

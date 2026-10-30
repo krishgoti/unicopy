@@ -540,7 +540,7 @@ EXIT;
 
 ### 5.4: Change Default Admin Password
 
-The default admin login (`admin@gmail.com` / `admin123`) must be changed:
+The default admin login (`admin@unihelp.edu` / `Admin@123`) must be changed:
 
 1. Open `https://yourdomain.com/unicopy/login`
 2. Login with default credentials
@@ -549,7 +549,7 @@ The default admin login (`admin@gmail.com` / `admin123`) must be changed:
 
 ```bash
 docker exec -it unicopy-mysql mysql -u root -p unihelp \
-  -e "UPDATE users SET password = '\$2y\$10\$YOUR_BCRYPT_HASH' WHERE email = 'admin@gmail.com';"
+  -e "UPDATE users SET password = '\$2y\$10\$YOUR_BCRYPT_HASH' WHERE email = 'admin@unihelp.edu';"
 ```
 
 ### 5.5: SSH Hardening

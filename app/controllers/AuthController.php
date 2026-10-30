@@ -76,7 +76,9 @@ class AuthController extends Controller {
                 $stmt->execute([$otp, $otpExpires, $user['id']]);
 
                 $_SESSION['pending_otp_email'] = $email;
-                $_SESSION['dev_otp'] = $otp;
+                if (strtolower((string)Env::get('APP_ENV')) !== 'production') {
+                    $_SESSION['dev_otp'] = $otp;
+                }
                 $_SESSION['otp_created_at'] = time();
                 $_SESSION['otp_lifetime'] = $otpLifetime;
 
@@ -90,7 +92,11 @@ class AuthController extends Controller {
                 if ($mailSent) {
                     $this->flash('warning', 'Password verified! A 6-digit OTP code has been sent to ' . htmlspecialchars($email) . '. (Valid for ' . $otpLifetime . ' seconds)');
                 } else {
-                    $this->flash('warning', 'Unable to send OTP email. Please check your SMTP settings. (For testing, your OTP code is: ' . $otp . ')');
+                    $msg = 'Unable to send OTP email. Please check your SMTP settings.';
+                    if (strtolower((string)Env::get('APP_ENV')) !== 'production') {
+                        $msg .= ' (For testing, your OTP code is: ' . $otp . ')';
+                    }
+                    $this->flash('warning', $msg);
                 }
 
                 $this->redirect(BASE_URL . '/verify-otp');
@@ -191,7 +197,9 @@ class AuthController extends Controller {
                 $this->db->commit();
 
                 $_SESSION['pending_otp_email'] = $email;
-                $_SESSION['dev_otp'] = $otp;
+                if (strtolower((string)Env::get('APP_ENV')) !== 'production') {
+                    $_SESSION['dev_otp'] = $otp;
+                }
                 $_SESSION['otp_created_at'] = time();
                 $_SESSION['otp_lifetime'] = $otpLifetime;
 
@@ -211,7 +219,11 @@ class AuthController extends Controller {
                 if ($mailSent) {
                     $this->flash('success', 'Registration successful! A 6-digit OTP code has been sent to ' . htmlspecialchars($email) . '. (Valid for ' . $otpLifetime . ' seconds)');
                 } else {
-                    $this->flash('warning', 'Registration successful! Unable to send OTP email. Please check your SMTP settings. (For testing, your OTP is: ' . $otp . ')');
+                    $msg = 'Registration successful! Unable to send OTP email. Please check your SMTP settings.';
+                    if (strtolower((string)Env::get('APP_ENV')) !== 'production') {
+                        $msg .= ' (For testing, your OTP is: ' . $otp . ')';
+                    }
+                    $this->flash('warning', $msg);
                 }
 
                 $this->redirect(BASE_URL . '/verify-otp');
@@ -324,7 +336,9 @@ class AuthController extends Controller {
             $stmt->execute([$otp, $otpExpires, $user['id']]);
 
             $_SESSION['pending_otp_email'] = $email;
-            $_SESSION['dev_otp'] = $otp;
+            if (strtolower((string)Env::get('APP_ENV')) !== 'production') {
+                $_SESSION['dev_otp'] = $otp;
+            }
             $_SESSION['otp_created_at'] = time();
             $_SESSION['otp_lifetime'] = $otpLifetime;
 
@@ -338,7 +352,11 @@ class AuthController extends Controller {
             if ($mailSent) {
                 $this->flash('success', 'A 6-digit OTP code has been sent to ' . htmlspecialchars($email) . '. (Valid for ' . $otpLifetime . ' seconds)');
             } else {
-                $this->flash('warning', 'Unable to send OTP email. Please check your SMTP settings. (For testing, your OTP is: ' . $otp . ')');
+                $msg = 'Unable to send OTP email. Please check your SMTP settings.';
+                if (strtolower((string)Env::get('APP_ENV')) !== 'production') {
+                    $msg .= ' (For testing, your OTP is: ' . $otp . ')';
+                }
+                $this->flash('warning', $msg);
             }
 
             $this->redirect(BASE_URL . '/verify-otp');
@@ -386,7 +404,9 @@ class AuthController extends Controller {
             $stmt->execute([$otp, $otpExpires, $user['id']]);
 
             $_SESSION['pending_otp_email'] = $email;
-            $_SESSION['dev_otp'] = $otp;
+            if (strtolower((string)Env::get('APP_ENV')) !== 'production') {
+                $_SESSION['dev_otp'] = $otp;
+            }
             $_SESSION['otp_created_at'] = time();
             $_SESSION['otp_lifetime'] = $otpLifetime;
 
@@ -400,7 +420,11 @@ class AuthController extends Controller {
             if ($mailSent) {
                 $this->flash('success', 'A fresh 6-digit OTP code has been sent to ' . htmlspecialchars($email) . '. (Valid for ' . $otpLifetime . ' seconds)');
             } else {
-                $this->flash('warning', 'Unable to send OTP email. Please check your SMTP settings. (For testing, your OTP is: ' . $otp . ')');
+                $msg = 'Unable to send OTP email. Please check your SMTP settings.';
+                if (strtolower((string)Env::get('APP_ENV')) !== 'production') {
+                    $msg .= ' (For testing, your OTP is: ' . $otp . ')';
+                }
+                $this->flash('warning', $msg);
             }
 
             $this->redirect(BASE_URL . '/verify-otp');

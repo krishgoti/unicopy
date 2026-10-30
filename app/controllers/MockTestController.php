@@ -9,7 +9,7 @@ class MockTestController extends Controller {
     private function handleMissingTables(PDOException $e): void {
         // 42S02 = base table or view not found
         if (($e->getCode() ?? '') === '42S02') {
-            $this->flash('error', 'Mock Tests tables are missing in your database. Run: c:\\xampp\\php\\php.exe c:\\xampp\\htdocs\\unicopy\\migrate_mock_tests.php (or import updated database/unihelp.sql).');
+            $this->flash('error', 'Mock Tests tables are missing in your database. Please import the latest database schema (database/unihelp.sql).');
             $this->redirect(BASE_URL . '/dashboard');
             return;
         }

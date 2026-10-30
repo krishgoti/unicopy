@@ -7,7 +7,8 @@ if (isset($_SESSION['otp_created_at'], $_SESSION['otp_lifetime'])) {
     $elapsed = time() - $_SESSION['otp_created_at'];
     $otpRemaining = max(0, (int)$_SESSION['otp_lifetime'] - $elapsed);
 }
-$devOtp = $_SESSION['dev_otp'] ?? null;
+$isProduction = (strtolower((string)Env::get('APP_ENV')) === 'production');
+$devOtp = (!$isProduction && isset($_SESSION['dev_otp'])) ? $_SESSION['dev_otp'] : null;
 ?>
 
 <div class="row w-100 justify-content-center align-items-center" style="min-height: 75vh;">

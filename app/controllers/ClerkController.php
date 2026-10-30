@@ -117,7 +117,7 @@ class ClerkController extends Controller {
      * Verify Clerk JWT token
      */
     private function verifyToken(string $token): ?array {
-        $secretKey = CLERK_SECRET_KEY;
+        $secretKey = defined('CLERK_SECRET_KEY') ? CLERK_SECRET_KEY : (Env::get('CLERK_SECRET_KEY', ''));
 
         if (empty($secretKey) || strpos($secretKey, 'sk_test_') !== 0) {
             error_log("Invalid CLERK_SECRET_KEY configured");

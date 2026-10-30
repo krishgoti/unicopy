@@ -29,7 +29,8 @@
                     <h6 class="mb-3">Contact Me</h6>
                     <ul class="list-unstyled">
                         <li class="mb-2"><i class="bi bi-geo-alt me-2"></i><a href="https://maps.app.goo.gl/YzdiZMpaTZmswEbH8" target="_blank" class="text-decoration-none opacity-90 hover-opacity-100">SSASIT</a></li>
-                        <li class="mb-2"><i class="bi bi-envelope me-2"></i><a href="mailto:krishgoti19@gmail.com" class="text-decoration-none opacity-90 hover-opacity-100">krishgoti19@gmail.com</a></li>
+                        <?php $contactEmail = defined('SMTP_FROM_EMAIL') && SMTP_FROM_EMAIL ? SMTP_FROM_EMAIL : 'support@unihelp.edu'; ?>
+                        <li class="mb-2"><i class="bi bi-envelope me-2"></i><a href="mailto:<?= htmlspecialchars($contactEmail) ?>" class="text-decoration-none opacity-90 hover-opacity-100"><?= htmlspecialchars($contactEmail) ?></a></li>
                     </ul>
                 </div>
             </div>
